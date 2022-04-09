@@ -57,6 +57,14 @@ pipeline {
               }      
            }       
     }
+
+    stage ('DAST') {
+      steps {
+        sshagent(['zap']) {
+         sh 'docker run -t owasp/zap2docker-stable zap-baseline.py -t http://172.31.5.74:8080/webapp/ || true'
+        }
+      }
+    }
     
 }
 }

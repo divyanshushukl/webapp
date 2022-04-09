@@ -14,7 +14,7 @@ pipeline {
     }
 
         
-    stage ('Check-Git-Secrets<img src=x onerror=alert()>') {
+    stage ('Check-Git-Secrets') {
       steps {
         sh 'rm trufflehog || true'
         sh 'docker run gesellix/trufflehog --json https://github.com/divyanshushukl/webapp.git > trufflehog'

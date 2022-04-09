@@ -24,14 +24,11 @@ pipeline {
     
     stage ('Source Composition Analysis') {
       steps {
-         sh 'rm dependency-* || true'
-         sh 'rm -rf dependency-check-7.0.4-release'
-         sh 'wget "https://github.com/jeremylong/DependencyCheck/releases/download/v7.0.4/dependency-check-7.0.4-release.zip" '
-         
-         sh 'unzip dependency-check-7.0.4-release.zip'
-         sh 'chmod +x dependency-check/bin/dependency-check.sh'
-         sh 'bash dependency-check/bin/dependency-check.sh -s .'
-         sh 'cat dependency-check-report.html'
+         sh 'rm owasp* || true'
+         sh 'wget "https://raw.githubusercontent.com/cehkunal/webapp/master/owasp-dependency-check.sh" '
+         sh 'chmod +x owasp-dependency-check.sh'
+         sh 'bash owasp-dependency-check.sh'
+         sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml'
         
       }
     }
